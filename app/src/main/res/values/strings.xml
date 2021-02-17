@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">RemainingTimes</string>
+    <string name="default_day_label">今日の残り時間</string>
+    <string name="default_month_label">今月の残り時間</string>
+    <string name="default_week_label">今週の残り時間</string>
+    <string name="default_year_label">今年の残り時間</string>
+    <string name="hourLabel">時間</string>
+    <string name="minuteLabel">分</string>
+    <string name="title_label">Time left for You</string>
+</resources>
