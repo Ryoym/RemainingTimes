@@ -7,4 +7,5 @@
     <string name="hourLabel">時間</string>
     <string name="minuteLabel">分</string>
     <string name="title_label">Time left for You</string>
+    <string name="add_schedule">Add Schedule</string>
 </resources>

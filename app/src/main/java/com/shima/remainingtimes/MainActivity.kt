@@ -5,6 +5,8 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.shima.remainingtimes.databinding.ActivityMainBinding
 import com.shima.remainingtimes.MainViewModel as MainViewModel1
 
@@ -18,5 +20,13 @@ class MainActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
 //        val scheduleViewModel = ViewModelProvider(this).get(MainViewModel1::class.java)
         binding.viewModel = viewModel
+
+        val recyclerView = findViewById<RecyclerView>(R.id.recyclerview)
+        val adapter = ScheduleListAdapter()
+        recyclerView.adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        viewModel.allSchedules.observe(this) { schedules ->
+            schedules.let { adapter.submitList(it) }
+        }
     }
 }
