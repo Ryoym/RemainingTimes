@@ -9,283 +9,307 @@
             type="com.shima.remainingtimes.MainViewModel" />
 
     </data>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".MainActivity">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/hourLabel3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="casual"
-            android:text="@string/hourLabel"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            app:layout_constraintBottom_toBottomOf="@+id/defaultMonthHour"
-            app:layout_constraintEnd_toStartOf="@+id/defaultMonthMinute"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/defaultMonthHour" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".MainActivity">
 
-        <TextView
-            android:id="@+id/minutelabel2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="casual"
-            android:text="@string/minuteLabel"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            app:layout_constraintBottom_toBottomOf="@+id/defaultWeekHour"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/defaultWeekMinute" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="@dimen/big_padding"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/defaultYearHour"
+                tools:listitem="@layout/recyclerview_item" />
 
-        <TextView
-            android:id="@+id/hourLabel2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="casual"
-            android:text="@string/hourLabel"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            app:layout_constraintBottom_toBottomOf="@+id/defaultWeekHour"
-            app:layout_constraintEnd_toStartOf="@+id/defaultWeekMinute"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/defaultWeekHour" />
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/add_schedule"
+                android:src="@drawable/ic_baseline_add_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/minuteLabel3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="casual"
-            android:text="@string/minuteLabel"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            app:layout_constraintBottom_toBottomOf="@+id/defaultMonthHour"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/defaultMonthMinute" />
+            <TextView
+                android:id="@+id/hourLabel3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="casual"
+                android:text="@string/hourLabel"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                app:layout_constraintBottom_toBottomOf="@+id/defaultMonthHour"
+                app:layout_constraintEnd_toStartOf="@+id/defaultMonthMinute"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/defaultMonthHour" />
 
-        <TextView
-            android:id="@+id/defaultYearHour"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="serif"
-            android:singleLine="false"
-            android:text="@{viewModel.defaultRemYearHour}"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display2"
-            app:layout_constraintEnd_toStartOf="@+id/hourLabel4"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/defaultYearLabel"
-            tools:text="yHour" />
+            <TextView
+                android:id="@+id/minuteLabel2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="casual"
+                android:text="@string/minuteLabel"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                app:layout_constraintBottom_toBottomOf="@+id/defaultWeekHour"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/defaultWeekMinute" />
 
-        <TextView
-            android:id="@+id/defaultYearMinute"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="serif"
-            android:singleLine="false"
-            android:text="@{viewModel.defaultRemYearMinute}"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display2"
-            app:layout_constraintBottom_toBottomOf="@+id/defaultYearHour"
-            app:layout_constraintEnd_toStartOf="@+id/minuteLabel4"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/hourLabel4"
-            tools:text="yMinute" />
+            <TextView
+                android:id="@+id/hourLabel2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="casual"
+                android:text="@string/hourLabel"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                app:layout_constraintBottom_toBottomOf="@+id/defaultWeekHour"
+                app:layout_constraintEnd_toStartOf="@+id/defaultWeekMinute"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/defaultWeekHour" />
 
-        <TextView
-            android:id="@+id/defaultDayHour"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="serif"
-            android:singleLine="false"
-            android:text="@{viewModel.defaultRemDayHour}"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display2"
-            app:layout_constraintEnd_toStartOf="@+id/hourLabel"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/defaultDayLabel"
-            tools:text="dHour" />
+            <TextView
+                android:id="@+id/minuteLabel3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="casual"
+                android:text="@string/minuteLabel"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                app:layout_constraintBottom_toBottomOf="@+id/defaultMonthHour"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/defaultMonthMinute" />
 
-        <TextView
-            android:id="@+id/minuteLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="casual"
-            android:text="@string/minuteLabel"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            app:layout_constraintBottom_toBottomOf="@+id/defaultDayHour"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/defaultDayMinute" />
+            <TextView
+                android:id="@+id/defaultYearHour"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="serif"
+                android:singleLine="false"
+                android:text="@{viewModel.defaultRemYearHour}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+                app:layout_constraintEnd_toStartOf="@+id/hourLabel4"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/defaultYearLabel"
+                tools:text="yHour" />
 
-        <TextView
-            android:id="@+id/defaultDayMinute"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="serif"
-            android:singleLine="false"
-            android:text="@{viewModel.defaultRemDayMinute}"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display2"
-            app:layout_constraintBottom_toBottomOf="@+id/defaultDayHour"
-            app:layout_constraintEnd_toStartOf="@+id/minuteLabel"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/hourLabel"
-            tools:text="dMinute" />
+            <TextView
+                android:id="@+id/defaultYearMinute"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="serif"
+                android:singleLine="false"
+                android:text="@{viewModel.defaultRemYearMinute}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+                app:layout_constraintBottom_toBottomOf="@+id/defaultYearHour"
+                app:layout_constraintEnd_toStartOf="@+id/minuteLabel4"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/hourLabel4"
+                tools:text="yMinute" />
 
-        <TextView
-            android:id="@+id/hourLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="casual"
-            android:text="@string/hourLabel"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            app:layout_constraintBottom_toBottomOf="@+id/defaultDayHour"
-            app:layout_constraintEnd_toStartOf="@+id/defaultDayMinute"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/defaultDayHour" />
+            <TextView
+                android:id="@+id/defaultDayHour"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="serif"
+                android:singleLine="false"
+                android:text="@{viewModel.defaultRemDayHour}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+                app:layout_constraintEnd_toStartOf="@+id/hourLabel"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/defaultDayLabel"
+                tools:text="dHour" />
 
-        <TextView
-            android:id="@+id/defaultWeekHour"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="serif"
-            android:singleLine="false"
-            android:text="@{viewModel.defaultRemWeekHour}"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display2"
-            app:layout_constraintEnd_toStartOf="@+id/hourLabel2"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/defaultWeekLabel"
-            tools:text="wHour" />
+            <TextView
+                android:id="@+id/minuteLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="casual"
+                android:text="@string/minuteLabel"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                app:layout_constraintBottom_toBottomOf="@+id/defaultDayHour"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/defaultDayMinute" />
 
-        <TextView
-            android:id="@+id/defaultWeekMinute"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="serif"
-            android:singleLine="false"
-            android:text="@{viewModel.defaultRemWeekMinute}"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display2"
-            app:layout_constraintBottom_toBottomOf="@+id/defaultWeekHour"
-            app:layout_constraintEnd_toStartOf="@+id/minutelabel2"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/hourLabel2"
-            tools:text="wMinute" />
+            <TextView
+                android:id="@+id/defaultDayMinute"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="serif"
+                android:singleLine="false"
+                android:text="@{viewModel.defaultRemDayMinute}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+                app:layout_constraintBottom_toBottomOf="@+id/defaultDayHour"
+                app:layout_constraintEnd_toStartOf="@+id/minuteLabel"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/hourLabel"
+                tools:text="dMinute" />
 
-        <TextView
-            android:id="@+id/defaultMonthHour"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="serif"
-            android:singleLine="false"
-            android:text="@{viewModel.defaultRemMonthHour}"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display2"
-            app:layout_constraintEnd_toStartOf="@+id/hourLabel3"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/defaultMonthLabel"
-            tools:text="mHour" />
+            <TextView
+                android:id="@+id/hourLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="casual"
+                android:text="@string/hourLabel"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                app:layout_constraintBottom_toBottomOf="@+id/defaultDayHour"
+                app:layout_constraintEnd_toStartOf="@+id/defaultDayMinute"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/defaultDayHour" />
 
-        <TextView
-            android:id="@+id/defaultMonthMinute"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="serif"
-            android:singleLine="false"
-            android:text="@{viewModel.defaultRemMonthMinute}"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display2"
-            app:layout_constraintBottom_toBottomOf="@+id/defaultMonthHour"
-            app:layout_constraintEnd_toStartOf="@+id/minuteLabel3"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/hourLabel3"
-            tools:text="mMinute" />
+            <TextView
+                android:id="@+id/defaultWeekHour"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="serif"
+                android:singleLine="false"
+                android:text="@{viewModel.defaultRemWeekHour}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+                app:layout_constraintEnd_toStartOf="@+id/hourLabel2"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/defaultWeekLabel"
+                tools:text="wHour" />
 
-        <TextView
-            android:id="@+id/defaultDayLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:fontFamily="sans-serif"
-            android:text="@string/default_day_label"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/titleLabel" />
+            <TextView
+                android:id="@+id/defaultWeekMinute"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="serif"
+                android:singleLine="false"
+                android:text="@{viewModel.defaultRemWeekMinute}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+                app:layout_constraintBottom_toBottomOf="@+id/defaultWeekHour"
+                app:layout_constraintEnd_toStartOf="@+id/minuteLabel2"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/hourLabel2"
+                tools:text="wMinute" />
 
-        <TextView
-            android:id="@+id/defaultMonthLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:fontFamily="sans-serif"
-            android:text="@string/default_month_label"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/defaultWeekHour" />
+            <TextView
+                android:id="@+id/defaultMonthHour"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="serif"
+                android:singleLine="false"
+                android:text="@{viewModel.defaultRemMonthHour}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+                app:layout_constraintEnd_toStartOf="@+id/hourLabel3"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/defaultMonthLabel"
+                tools:text="mHour" />
 
-        <TextView
-            android:id="@+id/defaultWeekLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:fontFamily="sans-serif"
-            android:text="@string/default_week_label"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/defaultDayHour" />
+            <TextView
+                android:id="@+id/defaultMonthMinute"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="serif"
+                android:singleLine="false"
+                android:text="@{viewModel.defaultRemMonthMinute}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+                app:layout_constraintBottom_toBottomOf="@+id/defaultMonthHour"
+                app:layout_constraintEnd_toStartOf="@+id/minuteLabel3"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/hourLabel3"
+                tools:text="mMinute" />
 
-        <TextView
-            android:id="@+id/defaultYearLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:fontFamily="sans-serif"
-            android:text="@string/default_year_label"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/defaultMonthHour" />
+            <TextView
+                android:id="@+id/defaultDayLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="sans-serif"
+                android:text="@string/default_day_label"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/titleLabel" />
 
-        <TextView
-            android:id="@+id/hourLabel4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="casual"
-            android:text="@string/hourLabel"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            app:layout_constraintBottom_toBottomOf="@+id/defaultYearHour"
-            app:layout_constraintEnd_toStartOf="@+id/defaultYearMinute"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/defaultYearHour" />
+            <TextView
+                android:id="@+id/defaultMonthLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="sans-serif"
+                android:text="@string/default_month_label"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/defaultWeekHour" />
 
-        <TextView
-            android:id="@+id/minuteLabel4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="casual"
-            android:text="@string/minuteLabel"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            app:layout_constraintBottom_toBottomOf="@+id/defaultYearHour"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/defaultYearMinute" />
+            <TextView
+                android:id="@+id/defaultWeekLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="sans-serif"
+                android:text="@string/default_week_label"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/defaultDayHour" />
 
-        <TextView
-            android:id="@+id/titleLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:fontFamily="casual"
-            android:text="@string/title_label"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/defaultYearLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="sans-serif"
+                android:text="@string/default_year_label"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/defaultMonthHour" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/hourLabel4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="casual"
+                android:text="@string/hourLabel"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                app:layout_constraintBottom_toBottomOf="@+id/defaultYearHour"
+                app:layout_constraintEnd_toStartOf="@+id/defaultYearMinute"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/defaultYearHour" />
+
+            <TextView
+                android:id="@+id/minuteLabel4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="casual"
+                android:text="@string/minuteLabel"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                app:layout_constraintBottom_toBottomOf="@+id/defaultYearHour"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/defaultYearMinute" />
+
+            <TextView
+                android:id="@+id/titleLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="casual"
+                android:text="@string/title_label"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
 </layout>
