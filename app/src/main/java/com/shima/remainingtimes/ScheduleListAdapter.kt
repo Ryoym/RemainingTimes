@@ -23,7 +23,7 @@ class ScheduleListAdapter : ListAdapter<Schedule, ScheduleViewHolder>(SCHEDULES_
     class ScheduleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val scheduleItemView: TextView = itemView.findViewById(R.id.recyclerTextView)
 
-        fun bind(id: Int) {
+        fun bind(id: Long) {
             scheduleItemView.text = id.toString()
         }
 
