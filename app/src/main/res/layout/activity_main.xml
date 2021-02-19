@@ -9,7 +9,9 @@
             type="com.shima.remainingtimes.MainViewModel" />
 
     </data>
-
+<androidx.core.widget.NestedScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -28,7 +30,7 @@
             app:layout_constraintStart_toEndOf="@+id/defaultMonthHour" />
 
         <TextView
-            android:id="@+id/minutelabel2"
+            android:id="@+id/minuteLabel2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="casual"
@@ -169,7 +171,7 @@
             android:text="@{viewModel.defaultRemWeekMinute}"
             android:textAppearance="@style/TextAppearance.AppCompat.Display2"
             app:layout_constraintBottom_toBottomOf="@+id/defaultWeekHour"
-            app:layout_constraintEnd_toStartOf="@+id/minutelabel2"
+            app:layout_constraintEnd_toStartOf="@+id/minuteLabel2"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/hourLabel2"
             tools:text="wMinute" />
@@ -309,4 +311,5 @@
             app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>
 </layout>
