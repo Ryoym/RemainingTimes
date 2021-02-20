@@ -8,4 +8,11 @@
     <string name="minuteLabel">分</string>
     <string name="title_label">Time left for You</string>
     <string name="add_schedule">Add Schedule</string>
+    <string name="time_hint">00:00</string>
+    <string name="getup_label">起床時間</string>
+    <string name="bedtime_label">就寝時間</string>
+    <string name="morning_routine_label">朝ルーティン時間</string>
+    <string name="night_routine_label">夜ルーティン時間</string>
+    <string name="commuting_return">帰宅所要時間</string>
+    <string name="commuting_label">通勤・通学時間</string>
 </resources>

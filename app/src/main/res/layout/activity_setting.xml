@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SettingActivity">
+
+    <EditText
+        android:id="@+id/setCommutingTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:ems="5"
+        android:hint="@string/time_hint"
+        android:inputType="time"
+        android:autofillHints="" tools:targetApi="o"
+        app:layout_constraintEnd_toEndOf="@+id/setNightRoutineEnd"
+        app:layout_constraintTop_toBottomOf="@+id/setNightRoutineEnd" />
+
+    <EditText
+        android:id="@+id/setCommutingReturn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:ems="5"
+        android:hint="@string/time_hint"
+        android:inputType="time"
+        android:autofillHints="" tools:targetApi="o"
+        app:layout_constraintEnd_toEndOf="@+id/setCommutingTime"
+        app:layout_constraintTop_toBottomOf="@+id/setCommutingTime" />
+
+    <EditText
+        android:id="@+id/setNightRoutineEnd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="5"
+        android:hint="@string/time_hint"
+        android:inputType="time"
+        android:autofillHints="" tools:targetApi="o"
+        app:layout_constraintBottom_toBottomOf="@+id/setNightRoutine"
+        app:layout_constraintEnd_toEndOf="@+id/setMorningRoutineEnd" />
+
+    <EditText
+        android:id="@+id/setNightRoutine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="24dp"
+        android:ems="5"
+        android:hint="@string/time_hint"
+        android:inputType="time"
+        android:autofillHints="" tools:targetApi="o"
+        app:layout_constraintEnd_toStartOf="@+id/setNightRoutineEnd"
+        app:layout_constraintStart_toEndOf="@+id/setNightRoutineLabel"
+        app:layout_constraintTop_toBottomOf="@+id/setMorningRoutine" />
+
+    <EditText
+        android:id="@+id/setGetupTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:ems="5"
+        android:hint="@string/time_hint"
+        android:inputType="time"
+        android:autofillHints="" tools:targetApi="o"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/setBedtime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="5"
+        android:hint="@string/time_hint"
+        android:inputType="time"
+        android:autofillHints="" tools:targetApi="o"
+        app:layout_constraintEnd_toEndOf="@+id/setGetupTime"
+        app:layout_constraintTop_toBottomOf="@+id/setGetupTime" />
+
+    <TextView
+        android:id="@+id/setGetupLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="24dp"
+        android:text="@string/getup_label"
+        app:layout_constraintBottom_toBottomOf="@+id/setGetupTime"
+        app:layout_constraintEnd_toStartOf="@+id/setGetupTime"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/setGetupTime" />
+
+    <TextView
+        android:id="@+id/setBedtimeLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:text="@string/bedtime_label"
+        app:layout_constraintBottom_toBottomOf="@+id/setBedtime"
+        app:layout_constraintEnd_toStartOf="@+id/setBedtime"
+        app:layout_constraintStart_toStartOf="@+id/setGetupLabel"
+        app:layout_constraintTop_toTopOf="@+id/setBedtime" />
+
+    <EditText
+        android:id="@+id/setMorningRoutine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="24dp"
+        android:ems="5"
+        android:hint="@string/time_hint"
+        android:inputType="time"
+        android:autofillHints="" tools:targetApi="o"
+        app:layout_constraintEnd_toStartOf="@+id/setMorningRoutineEnd"
+        app:layout_constraintStart_toEndOf="@+id/setMorningRoutineLabel"
+        app:layout_constraintTop_toBottomOf="@+id/setBedtime" />
+
+    <EditText
+        android:id="@+id/setMorningRoutineEnd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="5"
+        android:hint="@string/time_hint"
+        android:inputType="time"
+        android:autofillHints="" tools:targetApi="o"
+        app:layout_constraintBottom_toBottomOf="@+id/setMorningRoutine"
+        app:layout_constraintEnd_toEndOf="@+id/setBedtime" />
+
+    <TextView
+        android:id="@+id/setMorningRoutineLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/morning_routine_label"
+        app:layout_constraintBottom_toBottomOf="@+id/setMorningRoutine"
+        app:layout_constraintStart_toStartOf="@+id/setBedtimeLabel"
+        app:layout_constraintTop_toTopOf="@+id/setMorningRoutine" />
+
+    <TextView
+        android:id="@+id/setNightRoutineLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/night_routine_label"
+        app:layout_constraintBottom_toBottomOf="@+id/setNightRoutine"
+        app:layout_constraintStart_toStartOf="@+id/setMorningRoutineLabel"
+        app:layout_constraintTop_toTopOf="@+id/setNightRoutine" />
+
+    <TextView
+        android:id="@+id/setCommutingLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:text="@string/commuting_label"
+        app:layout_constraintBottom_toBottomOf="@+id/setCommutingTime"
+        app:layout_constraintEnd_toStartOf="@+id/setCommutingTime"
+        app:layout_constraintStart_toStartOf="@+id/setNightRoutineLabel"
+        app:layout_constraintTop_toTopOf="@+id/setCommutingTime" />
+
+    <TextView
+        android:id="@+id/setCommutingReturnLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:text="@string/commuting_return"
+        app:layout_constraintBottom_toBottomOf="@+id/setCommutingReturn"
+        app:layout_constraintEnd_toStartOf="@+id/setCommutingReturn"
+        app:layout_constraintStart_toStartOf="@+id/setCommutingLabel"
+        app:layout_constraintTop_toTopOf="@+id/setCommutingReturn" />
+</androidx.constraintlayout.widget.ConstraintLayout>
