@@ -9,15 +9,12 @@ import java.time.temporal.ChronoUnit
 class MainViewModel(private val repository: ScheduleDataRepository) : ViewModel() {
     val allSchedules: LiveData<List<Schedule>> = repository.allSchedules.asLiveData()
     private val _title = MutableLiveData<String>()
-    private val _date = MutableLiveData<Long>()
-    private val _time = MutableLiveData<Long>()
+    private val _dateTime = MutableLiveData<Long>()
     private val _detail = MutableLiveData<String?>()
 
     val title: LiveData<String> = _title
-    val date: LiveData<Long> = _date
-    val time: LiveData<Long> = _time
+    val dateTime: LiveData<Long> = _dateTime
     val detail: LiveData<String?> = _detail
-
 
     val defaultRemYearHour: String = RemTimer().setRemTime(ChronoUnit.YEARS, TimeUnit.HOUR)
     val defaultRemYearMinute: String = RemTimer().setRemTime(ChronoUnit.YEARS, TimeUnit.MINUTE)

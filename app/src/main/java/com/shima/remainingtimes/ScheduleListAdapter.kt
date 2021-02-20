@@ -17,14 +17,18 @@ class ScheduleListAdapter : ListAdapter<Schedule, ScheduleViewHolder>(SCHEDULES_
 
     override fun onBindViewHolder(holder: ScheduleViewHolder, position: Int) {
         val current = getItem(position)
-        holder.bind(current.id)
+        holder.bind(current.id, current.title, current.dateTime)
     }
 
     class ScheduleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val scheduleItemView: TextView = itemView.findViewById(R.id.recyclerTextView)
+        private val scheduleItemView: TextView = itemView.findViewById(R.id.recyclerLineId)
+        private val scheduleTitleView: TextView = itemView.findViewById(R.id.recyclerLineTitle)
+        private val scheduleDateTimeView: TextView = itemView.findViewById(R.id.recyclerDateTime)
 
-        fun bind(id: Long) {
+        fun bind(id: Long, title: String, datetime: Long) {
             scheduleItemView.text = id.toString()
+            scheduleTitleView.text = title
+            scheduleDateTimeView.text = datetime.toString()
         }
 
         companion object {

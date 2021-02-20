@@ -18,7 +18,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
         binding.lifecycleOwner = this
-//        val scheduleViewModel = ViewModelProvider(this).get(MainViewModel1::class.java)
         binding.viewModel = viewModel
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerview)

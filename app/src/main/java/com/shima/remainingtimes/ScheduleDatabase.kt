@@ -1,7 +1,6 @@
 package com.shima.remainingtimes
 
 import android.content.Context
-import androidx.room.CoroutinesRoom
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
@@ -9,9 +8,8 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.time.LocalDateTime
 
-@Database(entities = [Schedule::class], version = 1, exportSchema = false)
+@Database(entities = [Schedule::class], version = 1)
 abstract class ScheduleDatabase : RoomDatabase() {
     abstract fun scheduleDao(): ScheduleDao
 
@@ -51,7 +49,8 @@ abstract class ScheduleDatabase : RoomDatabase() {
         }
 
         suspend fun populateDatabase(scheduleDao: ScheduleDao) {
-            val date = Schedule(1, "Test", 10, 20, "test")
+            scheduleDao.deleteAll()
+            val date = Schedule(1, "test", 100, "tesT")
             scheduleDao.insert(date)
         }
     }
