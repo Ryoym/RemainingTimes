@@ -11,10 +11,11 @@ import kotlin.collections.HashMap
 class RemTimer {
     fun setRemTime(unitType: ChronoUnit, timeUnit: TimeUnit): String {
         val defaultRems = getRems()
-        val remTime: Long? = when (timeUnit) {
-            TimeUnit.HOUR -> defaultRems[unitType]?.toHours()
+        val minutes = defaultRems[unitType]?.toMinutes()?: 0
+        val remTime: Long = when (timeUnit) {
+            TimeUnit.HOUR -> (minutes / 60)
 
-            TimeUnit.MINUTE -> defaultRems[unitType]?.toMinutes()
+            TimeUnit.MINUTE -> (minutes % 60)
         }
 
         return remTime.toString()
@@ -23,7 +24,7 @@ class RemTimer {
     private fun getRems(): Map<ChronoUnit, Duration> {
         val now: LocalDateTime = LocalDateTime.now()
         val next: Map<ChronoUnit, LocalDateTime> = getNextMap()
-        val remOfNext: MutableMap<ChronoUnit, Duration> = HashMap()
+        val remOfNext: MutableMap<ChronoUnit, Duration> = EnumMap(java.time.temporal.ChronoUnit::class.java)
 
         for ((key, value) in next) {
             val duration = Duration.between(now, value)
@@ -33,7 +34,7 @@ class RemTimer {
     }
 
     private fun getNextMap(): Map<ChronoUnit, LocalDateTime> {
-        val begNext: MutableMap<ChronoUnit, LocalDateTime> = HashMap()
+        val begNext: MutableMap<ChronoUnit, LocalDateTime> = EnumMap(java.time.temporal.ChronoUnit::class.java)
         val now: LocalDateTime = LocalDateTime.now()
 
         val begNextYear: LocalDateTime =
