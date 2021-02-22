@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="com.shima.remainingtimes.Converter"/>
         <variable
             name="viewModel"
             type="com.shima.remainingtimes.MainViewModel" />
@@ -42,7 +43,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@android:color/darker_gray"
-            android:text="@string/default_time"
+            android:text="@{viewModel.workEnd}"
+            android:hint="@string/default_time"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             app:layout_constraintBottom_toBottomOf="@+id/setWorkingStart"
             app:layout_constraintEnd_toEndOf="@+id/setNightRoutineEnd" />
@@ -54,7 +56,8 @@
             android:layout_marginTop="24dp"
             android:layout_marginEnd="8dp"
             android:background="@android:color/darker_gray"
-            android:text="@string/default_time"
+            android:text="@{viewModel.workStart}"
+            android:hint="@string/default_time"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             app:layout_constraintEnd_toStartOf="@+id/fromTo3"
             app:layout_constraintTop_toBottomOf="@+id/setNightRoutine" />
@@ -64,7 +67,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@android:color/darker_gray"
-            android:text="@string/default_time"
+            android:text="@{viewModel.nightRoutineEnd}"
+            android:hint="@string/default_time"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             app:layout_constraintBottom_toBottomOf="@+id/setNightRoutine"
             app:layout_constraintEnd_toEndOf="@+id/setMorningRoutineEnd" />
@@ -76,7 +80,8 @@
             android:layout_marginTop="24dp"
             android:layout_marginEnd="8dp"
             android:background="@android:color/darker_gray"
-            android:text="@string/default_time"
+            android:text="@{viewModel.nightRoutineStart}"
+            android:hint="@string/default_time"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             app:layout_constraintEnd_toStartOf="@+id/fromTo2"
             app:layout_constraintTop_toBottomOf="@+id/setMorningRoutine" />
@@ -88,7 +93,8 @@
             android:layout_marginTop="24dp"
             android:layout_marginEnd="24dp"
             android:background="@android:color/darker_gray"
-            android:text="@string/default_time"
+            android:text="@{viewModel.getUpTime}"
+            android:hint="@string/default_time"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -99,7 +105,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:background="@android:color/darker_gray"
-            android:text="@string/default_time"
+            android:text="@{viewModel.bedTime}"
+            android:hint="@string/default_time"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             app:layout_constraintEnd_toEndOf="@+id/setGetupTime"
             app:layout_constraintTop_toBottomOf="@+id/setGetupTime" />
@@ -136,7 +143,8 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
             android:background="@android:color/darker_gray"
-            android:text="@string/default_time"
+            android:text="@{viewModel.morningRoutineStart}"
+            android:hint="@string/default_time"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             app:layout_constraintEnd_toStartOf="@+id/fromTo"
             app:layout_constraintTop_toBottomOf="@+id/setBedtime" />
@@ -146,7 +154,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@android:color/darker_gray"
-            android:text="@string/default_time"
+            android:text="@{viewModel.morningRoutineEnd}"
+            android:hint="@string/default_time"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             app:layout_constraintBottom_toBottomOf="@+id/setMorningRoutine"
             app:layout_constraintEnd_toEndOf="@+id/setBedtime" />
@@ -193,6 +202,15 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             app:layout_constraintBottom_toBottomOf="@+id/setMorningRoutine"
             app:layout_constraintEnd_toStartOf="@+id/setMorningRoutineEnd" />
+
+        <Button
+            android:id="@+id/saveButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/save_text"
+            app:layout_constraintEnd_toEndOf="@+id/setWorkingEnd"
+            app:layout_constraintTop_toBottomOf="@+id/setWorkingEnd" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

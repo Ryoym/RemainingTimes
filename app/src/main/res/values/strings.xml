@@ -16,4 +16,5 @@
     <string name="commuting_label">ワークタイム</string>
     <string name="default_time">00:00</string>
     <string name="from_to">~</string>
+    <string name="save_text">保存</string>
 </resources>

@@ -1,5 +1,6 @@
 package com.shima.remainingtimes.remtimer
 
+import com.shima.remainingtimes.UserSettings
 import java.time.DayOfWeek
 import java.time.Duration
 import java.time.LocalDateTime
@@ -9,6 +10,7 @@ import java.util.*
 import kotlin.collections.HashMap
 
 class RemTimer {
+
     fun setRemTime(unitType: ChronoUnit, timeUnit: TimeUnit): String {
         val defaultRems = getRems()
         val minutes = defaultRems[unitType]?.toMinutes()?: 0

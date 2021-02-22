@@ -1,5 +1,7 @@
 package com.shima.remainingtimes
 
+import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -13,7 +15,7 @@ import com.shima.remainingtimes.MainViewModel as MainViewModel1
 
 class MainActivity : AppCompatActivity() {
     private val viewModel: MainViewModel1 by viewModels {
-        ScheduleViewModelFactory((application as SchedulesApplication).repository)
+        Factory((application as SchedulesApplication).repository, application)
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +32,7 @@ class MainActivity : AppCompatActivity() {
             schedules.let { adapter.submitList(it) }
         }
         binding.fab.setOnClickListener {
-            val intent = Intent(this@MainActivity, SettingActivity::class.java)
+            val intent = Intent(this, SettingActivity::class.java)
             startActivity(intent)
         }
     }
