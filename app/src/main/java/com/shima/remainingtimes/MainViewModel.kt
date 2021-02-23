@@ -3,7 +3,6 @@ package com.shima.remainingtimes
 import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
-import androidx.core.content.contentValuesOf
 import androidx.lifecycle.*
 import androidx.preference.Preference
 import androidx.preference.PreferenceManager
@@ -17,7 +16,9 @@ class MainViewModel(private val repository: ScheduleDataRepository, application:
 
     private val _title = MutableLiveData<String>()
     private val _dateTime = MutableLiveData<Long>()
-    private val _detail = MutableLiveData<String?>()
+    private val _detail = MutableLiveData<String>()
+
+    val modeSwitch = MutableLiveData<Boolean>()
 
     val title: LiveData<String> = _title
     val dateTime: LiveData<Long> = _dateTime
@@ -45,6 +46,17 @@ class MainViewModel(private val repository: ScheduleDataRepository, application:
     val workStart = pref.stringLiveData(SettingKey.WORK_START.name, "")
     val workEnd = pref.stringLiveData(SettingKey.WORK_END.name, "")
 
+    val settings = RemTimer().settingMyRems(UserSettings(
+        getUpTime.value,
+        bedTime.value,
+        morningRoutineStart.value,
+        morningRoutineEnd.value,
+        nightRoutineStart.value,
+        nightRoutineEnd.value,
+        workStart.value,
+        workEnd.value))
+
+
     fun save(settingKey: SettingKey, text: String) {
         pref.edit().putString(settingKey.name, text).apply()
     }
@@ -70,5 +82,9 @@ enum class SettingKey {
     NIGHT_ROUTINE_START,
     NIGHT_ROUTINE_END,
     WORK_START,
-    WORK_END
+    WORK_END,
+    SLEEP,
+    MORNING_ROUTINE,
+    NIGHT_ROUTINE,
+    WORK
 }

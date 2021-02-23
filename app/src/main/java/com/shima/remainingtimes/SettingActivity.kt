@@ -76,21 +76,5 @@ class SettingActivity : AppCompatActivity() {
             binding.setWorkingEnd.text = time
             viewModel.save(SettingKey.WORK_END, time)
         }.show(supportFragmentManager, "time_dialog") }
-
-        //binding.saveButton.setOnClickListener { onSaveTapped() }
-    }
-
-    private fun onSaveTapped() {
-        val pref = PreferenceManager.getDefaultSharedPreferences(this)
-        pref.edit {
-            putString("GETUP", binding.setGetupTime.text.toString())
-            putString("BED", binding.setBedtime.text.toString())
-            putString("MORNING", binding.setMorningRoutine.text.toString())
-            putString("MORNING_END", binding.setMorningRoutineEnd.text.toString())
-            putString("NIGHT", binding.setNightRoutine.text.toString())
-            putString("NIGHT_END", binding.setNightRoutineEnd.text.toString())
-            putString("WORK", binding.setWorkingStart.text.toString())
-            putString("WORK_END", binding.setWorkingEnd.text.toString())
-        }
     }
 }

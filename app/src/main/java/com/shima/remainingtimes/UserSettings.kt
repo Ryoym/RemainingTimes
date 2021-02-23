@@ -1,12 +1,12 @@
 package com.shima.remainingtimes
 
 data class UserSettings(
-    val getUpTime: Long,
-    val bedTime: Long,
-    val morningRoutineStart: Long,
-    val morningRoutineEnd: Long,
-    val nightRoutineStart: Long,
-    val nightRoutineEnd: Long,
-    val workStart: Long,
-    val workEnd: Long
+    val getUpTime: String?,
+    val bedTime: String?,
+    val morningRoutineStart: String?,
+    val morningRoutineEnd: String?,
+    val nightRoutineStart: String?,
+    val nightRoutineEnd: String?,
+    val workStart: String?,
+    val workEnd: String?
 )
