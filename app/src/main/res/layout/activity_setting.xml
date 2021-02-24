@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="com.shima.remainingtimes.Converter"/>
+        <variable
+            name="viewModel"
+            type="com.shima.remainingtimes.MainViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".SettingActivity">
+
+        <TextView
+            android:id="@+id/fromTo2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:background="@color/design_default_color_secondary"
+            android:text="@string/from_to"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintBottom_toBottomOf="@+id/setNightRoutine"
+            app:layout_constraintEnd_toStartOf="@+id/setNightRoutineEnd" />
+
+        <TextView
+            android:id="@+id/fromTo3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:background="@color/design_default_color_secondary"
+            android:text="@string/from_to"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintBottom_toBottomOf="@+id/setWorkingStart"
+            app:layout_constraintEnd_toStartOf="@+id/setWorkingEnd" />
+
+        <TextView
+            android:id="@+id/setWorkingEnd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/design_default_color_secondary"
+            android:hint="@string/default_time"
+            android:text="@{viewModel.workEnd}"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintBottom_toBottomOf="@+id/setWorkingStart"
+            app:layout_constraintEnd_toEndOf="@+id/setNightRoutineEnd" />
+
+        <TextView
+            android:id="@+id/setWorkingStart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="8dp"
+            android:background="@color/design_default_color_secondary"
+            android:hint="@string/default_time"
+            android:text="@{viewModel.workStart}"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintEnd_toStartOf="@+id/fromTo3"
+            app:layout_constraintTop_toBottomOf="@+id/setNightRoutine" />
+
+        <TextView
+            android:id="@+id/setNightRoutineEnd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/design_default_color_secondary"
+            android:hint="@string/default_time"
+            android:text="@{viewModel.nightRoutineEnd}"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintBottom_toBottomOf="@+id/setNightRoutine"
+            app:layout_constraintEnd_toEndOf="@+id/setMorningRoutineEnd" />
+
+        <TextView
+            android:id="@+id/setNightRoutine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="8dp"
+            android:background="@color/design_default_color_secondary"
+            android:hint="@string/default_time"
+            android:text="@{viewModel.nightRoutineStart}"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintEnd_toStartOf="@+id/fromTo2"
+            app:layout_constraintTop_toBottomOf="@+id/setMorningRoutine" />
+
+        <TextView
+            android:id="@+id/setGetupTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="64dp"
+            android:layout_marginEnd="24dp"
+            android:background="@color/design_default_color_secondary"
+            android:hint="@string/default_time"
+            android:text="@{viewModel.getUpTime}"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/setBedtime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@color/design_default_color_secondary"
+            android:hint="@string/default_time"
+            android:text="@{viewModel.bedTime}"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintEnd_toEndOf="@+id/setGetupTime"
+            app:layout_constraintTop_toBottomOf="@+id/setGetupTime" />
+
+        <TextView
+            android:id="@+id/setGetupLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:background="@color/design_default_color_secondary"
+            android:text="@string/getup_label"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintBottom_toBottomOf="@+id/setGetupTime"
+            app:layout_constraintEnd_toStartOf="@+id/setGetupTime"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/setGetupTime" />
+
+        <TextView
+            android:id="@+id/setBedtimeLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/design_default_color_secondary"
+            android:text="@string/bedtime_label"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintBottom_toBottomOf="@+id/setBedtime"
+            app:layout_constraintEnd_toStartOf="@+id/setBedtime"
+            app:layout_constraintStart_toStartOf="@+id/setGetupLabel"
+            app:layout_constraintTop_toTopOf="@+id/setBedtime" />
+
+        <TextView
+            android:id="@+id/setMorningRoutine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:background="@color/design_default_color_secondary"
+            android:hint="@string/default_time"
+            android:text="@{viewModel.morningRoutineStart}"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintEnd_toStartOf="@+id/fromTo"
+            app:layout_constraintTop_toBottomOf="@+id/setBedtime" />
+
+        <TextView
+            android:id="@+id/setMorningRoutineEnd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/design_default_color_secondary"
+            android:hint="@string/default_time"
+            android:text="@{viewModel.morningRoutineEnd}"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintBottom_toBottomOf="@+id/setMorningRoutine"
+            app:layout_constraintEnd_toEndOf="@+id/setBedtime" />
+
+        <TextView
+            android:id="@+id/setMorningRoutineLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/design_default_color_secondary"
+            android:text="@string/morning_routine_label"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintBottom_toBottomOf="@+id/setMorningRoutine"
+            app:layout_constraintStart_toStartOf="@+id/setBedtimeLabel" />
+
+        <TextView
+            android:id="@+id/setNightRoutineLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/design_default_color_secondary"
+            android:text="@string/night_routine_label"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintBottom_toBottomOf="@+id/setNightRoutine"
+            app:layout_constraintEnd_toEndOf="@+id/setMorningRoutineLabel"
+            app:layout_constraintStart_toStartOf="@+id/setMorningRoutineLabel" />
+
+        <TextView
+            android:id="@+id/setCommutingLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/design_default_color_secondary"
+            android:text="@string/commuting_label"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintBottom_toBottomOf="@+id/setWorkingStart"
+            app:layout_constraintEnd_toEndOf="@+id/setNightRoutineLabel"
+            app:layout_constraintStart_toStartOf="@+id/setNightRoutineLabel" />
+
+        <TextView
+            android:id="@+id/fromTo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:background="@color/design_default_color_secondary"
+            android:text="@string/from_to"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintBottom_toBottomOf="@+id/setMorningRoutine"
+            app:layout_constraintEnd_toStartOf="@+id/setMorningRoutineEnd" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="107dp"
+            android:layout_marginBottom="250dp"
+            android:text="@{viewModel.settings.yearHour}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
