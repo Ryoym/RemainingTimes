@@ -169,7 +169,7 @@ class RemTimer {
                     -1 -> (endMilli.minus(nowMilli))
                     else -> 0
                 }
-                val rem = when (todayMinusSetMilli.compareTo(nowMilli)) {
+                val rem = when (nowMilli.compareTo(todayMinusSetMilli)) {
                     -1 -> remValue - result
                     else -> remValue
                 }
