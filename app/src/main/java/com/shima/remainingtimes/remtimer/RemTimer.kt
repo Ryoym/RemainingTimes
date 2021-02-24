@@ -9,6 +9,9 @@ import java.time.temporal.TemporalAdjusters
 import java.util.*
 
 class RemTimer {
+    companion object {
+        const val ONE_DAY: Long = 86400000
+    }
 
     fun settingMyRems(settings: UserSettings): RemTimeModel {
         val getUpTime = stringTimeToIntMap(settings.getUpTime!!)
@@ -95,8 +98,9 @@ class RemTimer {
         for ((key, value) in target) {
             val duration = Duration.between(now, value)
             val day = duration.toDays()
-            val rems = if (day <= 0L) {
-                duration.toMillis() - todayTotal
+            val durationMilli = duration.toMillis()
+            val rems = if (day <= 1L) {
+                durationMilli - todayTotal
             } else {
                 (duration.toMillis() - (day * dayRoutine) - todayTotal)
             }
@@ -109,7 +113,7 @@ class RemTimer {
         return if (startDate <= endDate) {
             endDate - startDate
         } else {
-            (86400000 - startDate + endDate)
+            (ONE_DAY - startDate + endDate)
         }
     }
 
@@ -123,17 +127,17 @@ class RemTimer {
             if (nowDate < endDate) {
                 result = endDate - nowDate
             } else if (endDate < startDate) {
-                result = 86400000 - nowDate
+                result = ONE_DAY - nowDate
             }
         } else if (endDate < nowDate) {
             if (nowDate < startDate) {
-                result = 86400000 - startDate
+                result = ONE_DAY - startDate
             }
         } else if (nowDate < startDate) {
             if (startDate < endDate) {
                 result = endDate - startDate
-            } else if (endDate < startDate) {
-                result = endDate - nowDate
+            } else if (nowDate < endDate) {
+                result = (endDate - nowDate) + (ONE_DAY - startDate)
             }
         }
         return result
@@ -158,14 +162,14 @@ class RemTimer {
                 val endMilli = toTodayEpoch(value.second)
 
                 val todayMinusSetMilli = if (startMilli > endMilli) {
-                    startMilli - 86400000
+                    startMilli - ONE_DAY
                 } else { startMilli }
 
                 val result = when (nowMilli.compareTo(endMilli)) {
                     -1 -> (endMilli.minus(nowMilli))
                     else -> 0
                 }
-                val rem = when (nowMilli.compareTo(todayMinusSetMilli)) {
+                val rem = when (todayMinusSetMilli.compareTo(nowMilli)) {
                     -1 -> remValue - result
                     else -> remValue
                 }

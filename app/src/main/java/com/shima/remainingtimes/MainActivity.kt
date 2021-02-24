@@ -35,8 +35,13 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.imageButton.setOnClickListener {
+            viewModel.setTimes()
             val intent = Intent(this, SettingActivity::class.java)
             startActivity(intent)
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
     }
 }
