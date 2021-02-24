@@ -35,16 +35,17 @@ class MainViewModel(private val repository: ScheduleDataRepository, application:
 
     companion object{
         const val PREF = "main"
+        const val defValue = "00:00"
     }
     private val pref: SharedPreferences = application.getSharedPreferences(PREF, Context.MODE_PRIVATE)
-    val getUpTime = pref.stringLiveData(SettingKey.GETUP_TIME.name, "")
-    val bedTime = pref.stringLiveData(SettingKey.BED_TIME.name, "")
-    val morningRoutineStart = pref.stringLiveData(SettingKey.MORNING_ROUTINE_START.name, "")
-    val morningRoutineEnd = pref.stringLiveData(SettingKey.MORNING_ROUTINE_END.name, "")
-    val nightRoutineStart = pref.stringLiveData(SettingKey.NIGHT_ROUTINE_START.name, "")
-    val nightRoutineEnd = pref.stringLiveData(SettingKey.NIGHT_ROUTINE_END.name, "")
-    val workStart = pref.stringLiveData(SettingKey.WORK_START.name, "")
-    val workEnd = pref.stringLiveData(SettingKey.WORK_END.name, "")
+    val getUpTime = pref.stringLiveData(SettingKey.GETUP_TIME.name, defValue)
+    val bedTime = pref.stringLiveData(SettingKey.BED_TIME.name, defValue)
+    val morningRoutineStart = pref.stringLiveData(SettingKey.MORNING_ROUTINE_START.name, defValue)
+    val morningRoutineEnd = pref.stringLiveData(SettingKey.MORNING_ROUTINE_END.name, defValue)
+    val nightRoutineStart = pref.stringLiveData(SettingKey.NIGHT_ROUTINE_START.name, defValue)
+    val nightRoutineEnd = pref.stringLiveData(SettingKey.NIGHT_ROUTINE_END.name, defValue)
+    val workStart = pref.stringLiveData(SettingKey.WORK_START.name, defValue)
+    val workEnd = pref.stringLiveData(SettingKey.WORK_END.name, defValue)
 
     val settings = RemTimer().settingMyRems(UserSettings(
         getUpTime.value,

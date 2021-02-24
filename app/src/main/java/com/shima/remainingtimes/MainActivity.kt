@@ -14,7 +14,7 @@ import com.shima.remainingtimes.databinding.ActivityMainBinding
 import com.shima.remainingtimes.MainViewModel as MainViewModel1
 
 class MainActivity : AppCompatActivity() {
-    private val viewModel: com.shima.remainingtimes.MainViewModel by viewModels {
+    private val viewModel: MainViewModel1 by viewModels {
         Factory((application as SchedulesApplication).repository, application)
     }
     override fun onCreate(savedInstanceState: Bundle?) {
