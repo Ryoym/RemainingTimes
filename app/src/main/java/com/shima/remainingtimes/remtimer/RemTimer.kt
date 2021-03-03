@@ -9,6 +9,9 @@ import java.time.temporal.TemporalAdjusters
 import java.util.*
 
 class RemTimer {
+    companion object {
+        const val ONE_DAY: Long = 86400000
+    }
 
     fun settingMyRems(settings: UserSettings): RemTimeModel {
         val getUpTime = stringTimeToIntMap(settings.getUpTime!!)
@@ -19,14 +22,6 @@ class RemTimer {
         val nightRoutineEnd = stringTimeToIntMap(settings.nightRoutineEnd!!)
         val workStart = stringTimeToIntMap(settings.workStart!!)
         val workEnd = stringTimeToIntMap(settings.workEnd!!)
-
-        val intMapUserSettings
-        : Map<SettingKey, Pair<Map<ChronoUnit, Long>, Map<ChronoUnit, Long>>> = mapOf(
-            SettingKey.SLEEP to Pair(getUpTime, bedTime),
-            SettingKey.MORNING_ROUTINE to Pair(morningRoutineStart, morningRoutineEnd),
-            SettingKey.NIGHT_ROUTINE to Pair(nightRoutineStart, nightRoutineEnd),
-            SettingKey.WORK to Pair(workStart, workEnd)
-        )
 
         val intGetUpTime = intMapToMillis(getUpTime)
         val intBedTime = intMapToMillis(bedTime)
@@ -56,10 +51,7 @@ class RemTimer {
                 daySleep, dayMorningRoutine, dayNightRoutine, dayWorking, todayTotalRoutine
         )
 
-        val allRemMap: MutableMap<ChronoUnit, Long> =
-            settingRemTimes(intMapUserSettings, totalRoutineTime)
-
-        return setMyRemainingTimes(allRemMap)
+        return setMyRemainingTimes(totalRoutineTime)
     }
 
     private fun setMyRemainingTimes(allRems: MutableMap<ChronoUnit, Long>): RemTimeModel {
@@ -95,8 +87,9 @@ class RemTimer {
         for ((key, value) in target) {
             val duration = Duration.between(now, value)
             val day = duration.toDays()
-            val rems = if (day <= 0L) {
-                duration.toMillis() - todayTotal
+            val durationMilli = duration.toMillis()
+            val rems = if (day <= 1L) {
+                durationMilli - todayTotal
             } else {
                 (duration.toMillis() - (day * dayRoutine) - todayTotal)
             }
@@ -109,7 +102,7 @@ class RemTimer {
         return if (startDate <= endDate) {
             endDate - startDate
         } else {
-            (86400000 - startDate + endDate)
+            (ONE_DAY - startDate + endDate)
         }
     }
 
@@ -123,72 +116,26 @@ class RemTimer {
             if (nowDate < endDate) {
                 result = endDate - nowDate
             } else if (endDate < startDate) {
-                result = 86400000 - nowDate
+                result = ONE_DAY - nowDate
             }
         } else if (endDate < nowDate) {
             if (nowDate < startDate) {
-                result = 86400000 - startDate
+                result = ONE_DAY - startDate
             }
         } else if (nowDate < startDate) {
             if (startDate < endDate) {
                 result = endDate - startDate
-            } else if (endDate < startDate) {
-                result = endDate - nowDate
+            } else if (nowDate < endDate) {
+                result = (endDate - nowDate) + (ONE_DAY - startDate)
             }
         }
         return result
-    }
-
-    private fun settingRemTimes(
-        routineType: Map<SettingKey,Pair<Map<ChronoUnit, Long>, Map<ChronoUnit, Long>>>,
-        myRems: Map<ChronoUnit, Long>
-    ): MutableMap<ChronoUnit, Long> {
-
-        val allRemMap
-                : MutableMap<ChronoUnit, Long> = EnumMap(java.time.temporal.ChronoUnit::class.java)
-        val now = ZonedDateTime.now(ZoneId.systemDefault())
-        val nowMilli = now.toInstant().toEpochMilli()
-
-        for ((remKey, remValue) in myRems) {
-            var rems = remValue
-
-            for ((_, value) in routineType) {
-
-                val startMilli = toTodayEpoch(value.first)
-                val endMilli = toTodayEpoch(value.second)
-
-                val todayMinusSetMilli = if (startMilli > endMilli) {
-                    startMilli - 86400000
-                } else { startMilli }
-
-                val result = when (nowMilli.compareTo(endMilli)) {
-                    -1 -> (endMilli.minus(nowMilli))
-                    else -> 0
-                }
-                val rem = when (nowMilli.compareTo(todayMinusSetMilli)) {
-                    -1 -> remValue - result
-                    else -> remValue
-                }
-                rems += rem - rems
-            }
-            allRemMap[remKey] = rems
-        }
-        return allRemMap
     }
 
     private fun intMapToMillis(map: Map<ChronoUnit, Long>): Long {
         val hourMilli = (map[ChronoUnit.HOURS]!! * 60 * 60 * 1000)
         val minuteMilli = (map[ChronoUnit.MINUTES]!! * 60 * 1000)
         return (hourMilli + minuteMilli)
-    }
-
-    private fun toTodayEpoch(target: Map<ChronoUnit, Long>): Long {
-        val now = ZonedDateTime.now(ZoneId.systemDefault())
-        val begNow = now.truncatedTo(ChronoUnit.DAYS)
-        val settingToday = begNow.withHour(
-                (target[ChronoUnit.HOURS]?: 0).toInt()).withMinute((target[ChronoUnit.MINUTES] ?: 0).toInt()
-        )
-        return settingToday.toInstant().toEpochMilli()
     }
 
     private fun stringTimeToIntMap(stringTime: String): Map<ChronoUnit, Long> {

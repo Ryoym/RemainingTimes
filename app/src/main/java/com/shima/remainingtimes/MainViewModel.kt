@@ -4,8 +4,6 @@ import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.lifecycle.*
-import androidx.preference.Preference
-import androidx.preference.PreferenceManager
 import com.shima.remainingtimes.remtimer.RemTimer
 import com.shima.remainingtimes.remtimer.TimeUnit
 import kotlinx.coroutines.launch
@@ -24,14 +22,14 @@ class MainViewModel(private val repository: ScheduleDataRepository, application:
     val dateTime: LiveData<Long> = _dateTime
     val detail: LiveData<String?> = _detail
 
-    val defaultRemYearHour: String = RemTimer().setRemTime(ChronoUnit.YEARS, TimeUnit.HOUR)
-    val defaultRemYearMinute: String = RemTimer().setRemTime(ChronoUnit.YEARS, TimeUnit.MINUTE)
-    val defaultRemMonthHour: String = RemTimer().setRemTime(ChronoUnit.MONTHS, TimeUnit.HOUR)
-    val defaultRemMonthMinute: String = RemTimer().setRemTime(ChronoUnit.MONTHS, TimeUnit.MINUTE)
-    val defaultRemWeekHour: String = RemTimer().setRemTime(ChronoUnit.WEEKS, TimeUnit.HOUR)
-    val defaultRemWeekMinute: String = RemTimer().setRemTime(ChronoUnit.WEEKS, TimeUnit.MINUTE)
-    val defaultRemDayHour: String = RemTimer().setRemTime(ChronoUnit.DAYS, TimeUnit.HOUR)
-    val defaultRemDayMinute: String = RemTimer().setRemTime(ChronoUnit.DAYS, TimeUnit.MINUTE)
+    var defaultRemYearHour: String = RemTimer().setRemTime(ChronoUnit.YEARS, TimeUnit.HOUR)
+    var defaultRemYearMinute: String = RemTimer().setRemTime(ChronoUnit.YEARS, TimeUnit.MINUTE)
+    var defaultRemMonthHour: String = RemTimer().setRemTime(ChronoUnit.MONTHS, TimeUnit.HOUR)
+    var defaultRemMonthMinute: String = RemTimer().setRemTime(ChronoUnit.MONTHS, TimeUnit.MINUTE)
+    var defaultRemWeekHour: String = RemTimer().setRemTime(ChronoUnit.WEEKS, TimeUnit.HOUR)
+    var defaultRemWeekMinute: String = RemTimer().setRemTime(ChronoUnit.WEEKS, TimeUnit.MINUTE)
+    var defaultRemDayHour: String = RemTimer().setRemTime(ChronoUnit.DAYS, TimeUnit.HOUR)
+    var defaultRemDayMinute: String = RemTimer().setRemTime(ChronoUnit.DAYS, TimeUnit.MINUTE)
 
     companion object{
         const val PREF = "main"
@@ -47,7 +45,7 @@ class MainViewModel(private val repository: ScheduleDataRepository, application:
     val workStart = pref.stringLiveData(SettingKey.WORK_START.name, defValue)
     val workEnd = pref.stringLiveData(SettingKey.WORK_END.name, defValue)
 
-    val settings = RemTimer().settingMyRems(UserSettings(
+    var settings = RemTimer().settingMyRems(UserSettings(
         getUpTime.value,
         bedTime.value,
         morningRoutineStart.value,
@@ -57,10 +55,30 @@ class MainViewModel(private val repository: ScheduleDataRepository, application:
         workStart.value,
         workEnd.value))
 
+    fun setTimes() {
+        defaultRemYearHour = RemTimer().setRemTime(ChronoUnit.YEARS, TimeUnit.HOUR)
+        defaultRemYearMinute = RemTimer().setRemTime(ChronoUnit.YEARS, TimeUnit.MINUTE)
+        defaultRemMonthHour = RemTimer().setRemTime(ChronoUnit.MONTHS, TimeUnit.HOUR)
+        defaultRemMonthMinute = RemTimer().setRemTime(ChronoUnit.MONTHS, TimeUnit.MINUTE)
+        defaultRemWeekHour = RemTimer().setRemTime(ChronoUnit.WEEKS, TimeUnit.HOUR)
+        defaultRemWeekMinute = RemTimer().setRemTime(ChronoUnit.WEEKS, TimeUnit.MINUTE)
+        defaultRemDayHour = RemTimer().setRemTime(ChronoUnit.DAYS, TimeUnit.HOUR)
+        defaultRemDayMinute = RemTimer().setRemTime(ChronoUnit.DAYS, TimeUnit.MINUTE)
+        settings = RemTimer().settingMyRems((UserSettings(
+                getUpTime.value,
+                bedTime.value,
+                morningRoutineStart.value,
+                morningRoutineEnd.value,
+                nightRoutineStart.value,
+                nightRoutineEnd.value,
+                workStart.value,
+                workEnd.value)))
+    }
 
     fun save(settingKey: SettingKey, text: String) {
         pref.edit().putString(settingKey.name, text).apply()
     }
+
     fun insert(schedule: Schedule) = viewModelScope.launch {
         repository.insert(schedule)
     }
